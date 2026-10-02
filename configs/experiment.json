@@ -1,0 +1,69 @@
+{
+  "schema_version": "bigtwobench-public-v1",
+  "targets_file": "../prompts/big_two_targets.json",
+  "target_order": [
+    "stability_high_plasticity_high",
+    "stability_high_plasticity_low",
+    "stability_low_plasticity_high",
+    "stability_low_plasticity_low"
+  ],
+  "conditions": {
+    "prompt": {
+      "training_data": "none",
+      "persona_prompt_during_training": false,
+      "persona_prompt_at_inference": true
+    },
+    "lora": {
+      "training_data": "target_corner_subset",
+      "persona_prompt_during_training": false,
+      "persona_prompt_at_inference": false
+    },
+    "lora_prompted": {
+      "training_data": "target_corner_subset",
+      "persona_prompt_during_training": true,
+      "persona_prompt_at_inference": false
+    },
+    "lora_control": {
+      "training_data": "corpus_random_control_subset",
+      "persona_prompt_during_training": true,
+      "persona_prompt_at_inference": false
+    },
+    "lora_prompt_inference": {
+      "training_data": "reuse_standard_lora_checkpoint",
+      "persona_prompt_during_training": false,
+      "persona_prompt_at_inference": true
+    }
+  },
+  "training": {
+    "lora_rank": 64,
+    "lora_alpha": 16,
+    "lora_dropout": 0.1,
+    "learning_rate": 0.0001,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.03,
+    "max_sequence_length": 2048,
+    "epochs": 3,
+    "precision": "bfloat16",
+    "target_modules": "standard attention and MLP projection modules"
+  },
+  "subset_selection": {
+    "full_budget": 2941,
+    "low_stability_low_plasticity_available_count": 1111,
+    "mixed_corner_thresholds": {
+      "stability": 1.0,
+      "plasticity": 1.0
+    },
+    "equal_budget_ablation": 1111
+  },
+  "evaluation": {
+    "questionnaires": ["tipi", "bfi-10", "bfi-44", "bfm-50"],
+    "temperatures": [0.0, 0.5, 1.0],
+    "option_order_seed": 2026091501,
+    "equal_budget_seed": 2026091502,
+    "behavioral_probes": 6
+  },
+  "lora_sensitivity": {
+    "models": ["Granite-3.3-2B-Instruct", "Qwen3-4B", "Mistral-7B-Instruct-v0.3"],
+    "rank_alpha_pairs": [[32, 8], [64, 8], [64, 16], [64, 32], [128, 32]]
+  }
+}

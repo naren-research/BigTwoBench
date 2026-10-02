@@ -1,0 +1,49 @@
+{
+  "key": "stability_instruction_following",
+  "name": "Stability Instruction-Following Probe",
+  "reference": "Custom paper3 probe inspired by instruction-following and self-regulation evaluations.",
+  "default_temperature": 0.0,
+  "default_max_tokens": 256,
+  "items": [
+    {
+      "id": "stable_1",
+      "prompt": "Give exactly three bullet points about preparing for rain. Each bullet must contain exactly two words. The first bullet must mention rain. Do not use commas or periods.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 3},
+        {"type": "each_line_word_count_equals", "expected": 2},
+        {"type": "line_contains", "line_index": 0, "substring": "rain"},
+        {"type": "forbidden_characters", "characters": [",", "."]}
+      ]
+    },
+    {
+      "id": "stable_2",
+      "prompt": "Respond as a numbered list with exactly four items. Each item must be a single sentence of at most six words. The second item must contain the word blue.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 4},
+        {"type": "max_words_per_line", "expected": 6},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "line_contains", "line_index": 1, "substring": "blue"}
+      ]
+    },
+    {
+      "id": "stable_3",
+      "prompt": "Write exactly one sentence with 12 to 16 words that starts with 'Calm systems' and contains the word 'verify'. Do not use exclamation marks.",
+      "checks": [
+        {"type": "sentence_count_equals", "expected": 1},
+        {"type": "total_word_count_between", "minimum": 12, "maximum": 16},
+        {"type": "text_startswith", "value": "Calm systems"},
+        {"type": "text_contains", "value": "verify"},
+        {"type": "forbidden_characters", "characters": ["!"]}
+      ]
+    },
+    {
+      "id": "stable_4",
+      "prompt": "Provide exactly two lines. Each line must begin with 'Rule:' and end with the word 'checked'.",
+      "checks": [
+        {"type": "line_count_equals", "expected": 2},
+        {"type": "each_line_startswith", "value": "Rule:"},
+        {"type": "each_line_endswith", "value": "checked"}
+      ]
+    }
+  ]
+}

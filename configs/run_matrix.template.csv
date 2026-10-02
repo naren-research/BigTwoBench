@@ -1,0 +1,2 @@
+run_id,method,model,target,target_label,prompt_file,dataset_jsonl,train_config,train_script,notes
+replace-with-unique-id,prompt,replace-with-model-id,stability_high_plasticity_high,HS_HP,prompts/stability_high_plasticity_high.txt,,,,Populate one row for each model, target, and intervention condition.

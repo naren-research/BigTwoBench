@@ -1,0 +1,66 @@
+{
+  "key": "plasticity_reframing_breadth",
+  "name": "Plasticity Reframing-Breadth Probe",
+  "reference": "Custom paper3 probe for flexible reframing across diverse domains and perspectives.",
+  "default_temperature": 0.7,
+  "default_max_tokens": 512,
+  "items": [
+    {
+      "id": "plastic_rb_1",
+      "prompt": "Give six different ways to reframe a delayed project update so it sounds constructive. Use a numbered list. Prefix each item with a different bracket tag such as [Coach] or [Analyst]. Keep each item to one sentence.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 6},
+        {"type": "distinct_bracket_tags", "minimum": 6},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_rb_2",
+      "prompt": "Offer five alternative framings for nervousness before a presentation. Use five bullet points. Each bullet must start with a different bracket tag and a different first content word.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 5},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_rb_3",
+      "prompt": "Propose six ways to reinterpret an empty community lot as an opportunity. Use a numbered list and cover at least five distinct domains using bracket tags you choose.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 6},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_rb_4",
+      "prompt": "Create five one-sentence metaphors that reframe debugging a failure as progress. Put each on its own line in the form '- [Tag] ...'. Use a different tag on every line.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 5},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_rb_5",
+      "prompt": "Suggest six ways to present rainy weather as beneficial rather than disappointing. Use a numbered list with six different bracket tags and avoid repeating the first content word after each tag.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 6},
+        {"type": "distinct_bracket_tags", "minimum": 6},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_rb_6",
+      "prompt": "Give five alternative perspectives on waiting in a long queue. Use bullet points. Each bullet must begin with a unique bracket tag and stay within one sentence.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 5},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    }
+  ]
+}

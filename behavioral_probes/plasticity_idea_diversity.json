@@ -1,0 +1,47 @@
+{
+  "key": "plasticity_idea_diversity",
+  "name": "Plasticity Idea-Diversity Probe",
+  "reference": "Custom paper3 probe for ideational breadth and domain diversity.",
+  "default_temperature": 0.7,
+  "default_max_tokens": 512,
+  "items": [
+    {
+      "id": "plastic_1",
+      "prompt": "Suggest six ways to make a library feel more welcoming. Use a numbered list. Prefix each item with a self-chosen domain tag in square brackets, like [Music]. Every tag must be different. Keep each item to one sentence.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 6},
+        {"type": "distinct_bracket_tags", "minimum": 6},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_2",
+      "prompt": "Give five alternative uses for a cardboard box. Use five bullet points. Each bullet must begin with a different bracket tag you invent. Avoid repeating the first content word after the tag.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 5},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_3",
+      "prompt": "Propose six workshop themes for a community center. Use a numbered list. Cover at least five different domains by using bracket tags you choose.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 6},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    },
+    {
+      "id": "plastic_4",
+      "prompt": "Create five metaphors for debugging software. Put each on its own line as '- [Tag] ...'. Use a different tag on each line and keep each metaphor to one sentence.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 5},
+        {"type": "distinct_bracket_tags", "minimum": 5},
+        {"type": "max_sentences_per_line", "expected": 1},
+        {"type": "min_unique_first_content_words", "expected": 5}
+      ]
+    }
+  ]
+}

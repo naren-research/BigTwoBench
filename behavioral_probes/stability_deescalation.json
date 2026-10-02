@@ -1,0 +1,76 @@
+{
+  "key": "stability_deescalation",
+  "name": "Stability De-escalation Probe",
+  "reference": "Pre-specified Paper 3 scenario-based probe for calm, constructive handling of interpersonal or operational tension. It complements the existing format-adherence and rule-maintenance probes; its deterministic rubric checks required de-escalatory actions, not unobserved intent.",
+  "default_temperature": 0.0,
+  "default_max_tokens": 384,
+  "items": [
+    {
+      "id": "stable_de_1",
+      "prompt": "A customer writes an angry message after receiving the wrong order. Give exactly three numbered steps for replying. The steps must begin with 'Acknowledge:', 'Clarify:', and 'Resolve:' in that order. Include the words 'apology', 'details', and 'replacement' somewhere in the response. Keep each step to at most 12 words.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 3},
+        {"type": "text_startswith", "value": "1. Acknowledge:"},
+        {"type": "line_contains", "line_index": 1, "substring": "Clarify:"},
+        {"type": "line_contains", "line_index": 2, "substring": "Resolve:"},
+        {"type": "max_words_per_line", "expected": 12},
+        {"type": "text_contains_all", "values": ["apology", "details", "replacement"]}
+      ]
+    },
+    {
+      "id": "stable_de_2",
+      "prompt": "Two colleagues disagree sharply in a project chat. Write exactly three bullet points describing how to reset the discussion. Start the bullets with 'Pause:', 'Listen:', and 'Agree:' in that order. Include 'private' and 'next step'. Use no exclamation marks.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 3},
+        {"type": "text_startswith", "value": "- Pause:"},
+        {"type": "line_contains", "line_index": 1, "substring": "Listen:"},
+        {"type": "line_contains", "line_index": 2, "substring": "Agree:"},
+        {"type": "text_contains_all", "values": ["private", "next step"]},
+        {"type": "forbidden_characters", "characters": ["!"]}
+      ]
+    },
+    {
+      "id": "stable_de_3",
+      "prompt": "A teammate missed an agreed handoff and is defensive. Provide a numbered list of exactly three actions. Item 1 must contain 'facts'; item 2 must contain 'support'; item 3 must contain 'follow-up'. Each item must have at most nine words.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 3},
+        {"type": "max_words_per_line", "expected": 9},
+        {"type": "line_contains", "line_index": 0, "substring": "facts"},
+        {"type": "line_contains", "line_index": 1, "substring": "support"},
+        {"type": "line_contains", "line_index": 2, "substring": "follow-up"}
+      ]
+    },
+    {
+      "id": "stable_de_4",
+      "prompt": "A public meeting becomes tense after someone challenges a decision. Give exactly two sentences. The first must start with 'First,' and contain 'acknowledge'. The second must start with 'Then,' and contain both 'evidence' and 'together'. Do not use question marks.",
+      "checks": [
+        {"type": "sentence_count_equals", "expected": 2},
+        {"type": "text_startswith", "value": "First,"},
+        {"type": "text_contains_all", "values": ["acknowledge", "Then,", "evidence", "together"]},
+        {"type": "forbidden_characters", "characters": ["?"]}
+      ]
+    },
+    {
+      "id": "stable_de_5",
+      "prompt": "A vendor reports that a delivery will be late, and the internal team is frustrated. Give three bullet points. Begin them with 'Confirm:', 'Protect:', and 'Update:' in that order. Include 'timeline', 'customer', and 'owner' somewhere in the response.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 3},
+        {"type": "text_startswith", "value": "- Confirm:"},
+        {"type": "line_contains", "line_index": 1, "substring": "Protect:"},
+        {"type": "line_contains", "line_index": 2, "substring": "Update:"},
+        {"type": "text_contains_all", "values": ["timeline", "customer", "owner"]}
+      ]
+    },
+    {
+      "id": "stable_de_6",
+      "prompt": "A code-review exchange has become personal. Write exactly three numbered lines for a constructive reset. The lines must contain 'pause', 'specific', and 'next review' respectively. End the final line with 'calmly'.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 3},
+        {"type": "line_contains", "line_index": 0, "substring": "pause"},
+        {"type": "line_contains", "line_index": 1, "substring": "specific"},
+        {"type": "line_contains", "line_index": 2, "substring": "next review"},
+        {"type": "line_endswith", "line_index": 2, "value": "calmly"}
+      ]
+    }
+  ]
+}

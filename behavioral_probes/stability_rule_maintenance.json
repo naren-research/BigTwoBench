@@ -1,0 +1,71 @@
+{
+  "key": "stability_rule_maintenance",
+  "name": "Stability Rule-Maintenance Probe",
+  "reference": "Custom paper3 probe for retaining simple format constraints under distractor-rich instructions.",
+  "default_temperature": 0.0,
+  "default_max_tokens": 320,
+  "items": [
+    {
+      "id": "stable_rm_1",
+      "prompt": "Give exactly three bullet points about checking a bicycle before riding. Each bullet must begin with 'Check' and end with the word 'first'. Keep every bullet to exactly three words.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 3},
+        {"type": "each_line_word_count_equals", "expected": 3},
+        {"type": "each_line_startswith", "value": "- Check"},
+        {"type": "each_line_endswith", "value": "first"}
+      ]
+    },
+    {
+      "id": "stable_rm_2",
+      "prompt": "Respond as a numbered list with exactly four items about organizing a study desk. Every item must contain the word 'order' and use no more than five words.",
+      "checks": [
+        {"type": "numbered_count_equals", "expected": 4},
+        {"type": "max_words_per_line", "expected": 5},
+        {"type": "line_contains", "line_index": 0, "substring": "order"},
+        {"type": "line_contains", "line_index": 1, "substring": "order"},
+        {"type": "line_contains", "line_index": 2, "substring": "order"},
+        {"type": "line_contains", "line_index": 3, "substring": "order"}
+      ]
+    },
+    {
+      "id": "stable_rm_3",
+      "prompt": "Write exactly one sentence of 10 to 14 words beginning with 'Consistent systems' and containing the word 'signal'. Do not use semicolons.",
+      "checks": [
+        {"type": "sentence_count_equals", "expected": 1},
+        {"type": "total_word_count_between", "minimum": 10, "maximum": 14},
+        {"type": "text_startswith", "value": "Consistent systems"},
+        {"type": "text_contains", "value": "signal"},
+        {"type": "forbidden_characters", "characters": [";"]}
+      ]
+    },
+    {
+      "id": "stable_rm_4",
+      "prompt": "Provide exactly two lines about a launch checklist. Each line must start with 'Step:' and end with 'verified'. Avoid commas.",
+      "checks": [
+        {"type": "line_count_equals", "expected": 2},
+        {"type": "each_line_startswith", "value": "Step:"},
+        {"type": "each_line_endswith", "value": "verified"},
+        {"type": "forbidden_characters", "characters": [","]}
+      ]
+    },
+    {
+      "id": "stable_rm_5",
+      "prompt": "Give three bullet points about storing passwords safely. Each bullet must have at most four words and the second bullet must contain the word 'vault'.",
+      "checks": [
+        {"type": "bullet_count_equals", "expected": 3},
+        {"type": "max_words_per_line", "expected": 4},
+        {"type": "line_contains", "line_index": 1, "substring": "vault"}
+      ]
+    },
+    {
+      "id": "stable_rm_6",
+      "prompt": "Respond with exactly four lines. Every line must begin with 'Keep:' and no line may contain more than three words. The final line must include the word 'steady'.",
+      "checks": [
+        {"type": "line_count_equals", "expected": 4},
+        {"type": "each_line_startswith", "value": "Keep:"},
+        {"type": "max_words_per_line", "expected": 3},
+        {"type": "line_contains", "line_index": 3, "substring": "steady"}
+      ]
+    }
+  ]
+}
